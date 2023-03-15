@@ -1,5 +1,6 @@
 const express = require("express");
 const notFound = require("./middlewares/notFound");
+const conrs = require("cors");
 
 require("dotenv").config();
 
@@ -8,6 +9,7 @@ const workoutRouter = require("./routes/workout");
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 //routes
 app.use("/api/workouts", workoutRouter);
