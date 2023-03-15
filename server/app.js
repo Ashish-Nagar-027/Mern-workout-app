@@ -1,6 +1,6 @@
 const express = require("express");
 const notFound = require("./middlewares/notFound");
-const conrs = require("cors");
+const cors = require("cors");
 
 require("dotenv").config();
 
