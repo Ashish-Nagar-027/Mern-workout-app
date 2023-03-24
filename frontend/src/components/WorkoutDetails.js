@@ -1,5 +1,6 @@
 import React from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutContext";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext();
@@ -28,6 +29,9 @@ const WorkoutDetails = ({ workout }) => {
       <p>
         <strong>Reps (kg): </strong>
         {workout.reps}
+      </p>
+      <p>
+        {formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}
       </p>
       <span className="deleteBtn" onClick={handleDeleteClick}>
         delete
