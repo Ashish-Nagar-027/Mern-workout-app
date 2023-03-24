@@ -6,7 +6,7 @@ const WorkoutDetails = ({ workout }) => {
       <h4>{workout.title}</h4>
       <p>
         <strong>Load (kg): </strong>
-        {workout.title}
+        {workout.load}
       </p>
       <p>
         <strong>Reps (kg): </strong>

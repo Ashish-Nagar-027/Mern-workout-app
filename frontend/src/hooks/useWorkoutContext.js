@@ -1,11 +1,11 @@
 // custom hook component
 
-import { workoutsContext } from "../context/workoutContext";
+import { WorkoutsContext } from "../context/WorkoutContext";
 
 import { useContext } from "react";
 
 export const useWorkoutsContext = () => {
-  const context = useContext(workoutsContext);
+  const context = useContext(WorkoutsContext);
 
   if (!context) {
     throw Error(
