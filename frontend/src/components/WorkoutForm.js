@@ -28,6 +28,7 @@ const WorkoutForm = () => {
       }
     );
     const json = await response.json();
+
     if (!response.ok) {
       setError(json.error);
     }
@@ -36,7 +37,7 @@ const WorkoutForm = () => {
       setLoad("");
       setTitle("");
       setReps("");
-      dispatch({ type: "CREATE_WORKOUT", payload: json });
+      dispatch({ type: "CREATE_WORKOUT", payload: json.workout });
     }
   };
 
