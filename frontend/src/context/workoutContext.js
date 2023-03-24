@@ -19,14 +19,13 @@ export const workoutReducer = (state, action) => {
 };
 
 export const workoutsContextProvider = ({ children }) => {
+  // reducer hook
   const [state, dispatch] = useReducer(workoutReducer, {
     workouts: null,
   });
 
-  dispatch({});
-
   return (
-    <workoutsContext.Provider value={{ state, dispatch }}>
+    <workoutsContext.Provider value={{ ...state, dispatch }}>
       {children}
     </workoutsContext.Provider>
   );
