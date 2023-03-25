@@ -1,15 +1,22 @@
 import React from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutContext";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext();
+  const { user } = useContext(AuthContext);
 
   const handleDeleteClick = async () => {
+    if (!user) {
+      return;
+    }
     const response = await fetch(
       "https://mern-workout-app.vercel.app/api/workouts/" + workout._id,
       {
         method: "DELETE",
+        Authorization: "Bearer " + user.token,
       }
     );
     const json = await response.json();

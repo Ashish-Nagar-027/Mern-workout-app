@@ -9,7 +9,9 @@ const createWorkout = async (req, res) => {
   }
 
   try {
-    const workout = await Workout.create({ title, load, reps });
+    const user_id = req.user.id;
+
+    const workout = await Workout.create({ title, load, reps, user_id });
     res.status(200).json({ workout });
   } catch (error) {
     console.log(error);
@@ -19,8 +21,9 @@ const createWorkout = async (req, res) => {
 
 // get all workouts
 const getAllworkouts = async (req, res) => {
+  const user_id = req.user.id;
   try {
-    const workout = await Workout.find({}).sort({ createdAt: -1 });
+    const workout = await Workout.find({ user_id }).sort({ createdAt: -1 });
     res.status(200).json(workout);
   } catch (error) {
     console.log(error);

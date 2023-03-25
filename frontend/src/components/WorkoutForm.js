@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutContext";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const WorkoutForm = () => {
   const [title, setTitle] = useState("");
@@ -8,6 +10,7 @@ const WorkoutForm = () => {
   const [error, setError] = useState(null);
 
   const { dispatch } = useWorkoutsContext();
+  const { user } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +20,10 @@ const WorkoutForm = () => {
       return alert("please fill all fields");
     }
 
+    if (!user) {
+      return;
+    }
+
     const response = await fetch(
       "https://mern-workout-app.vercel.app/api/workouts",
       {
@@ -24,6 +31,7 @@ const WorkoutForm = () => {
         body: JSON.stringify(workout),
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + user.token,
         },
       }
     );

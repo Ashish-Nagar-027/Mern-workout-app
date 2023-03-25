@@ -37,7 +37,14 @@ header .container {
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+ gap: 1rem;
+
 }
 
 
@@ -86,14 +93,14 @@ header a {
  margin: 1rem 0rem;
 }
 
-.add-workout-form input{
+ input{
   padding: 10px 5px;
 
   font-size: 1.1rem;
   margin-bottom: 10px;
 }
 
-.add-workout-form button {
+ button {
   padding: 0.5rem;
   background-color: rgb(94, 137, 201);
   cursor: pointer;
@@ -113,4 +120,17 @@ header a {
   top: 20px;
   cursor: pointer;
 
+}
+
+.error {
+
+ border: 1px solid gray;
+ padding: 5px;
+ margin: 5px;
+
+}
+
+
+.lading-btn {
+  background-color: gray;
 }
