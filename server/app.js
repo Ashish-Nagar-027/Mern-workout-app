@@ -4,7 +4,8 @@ const cors = require("cors");
 
 require("dotenv").config();
 
-const workoutRouter = require("./routes/workout");
+const workoutRoutes = require("./routes/workout");
+const userRoutes = require("./routes/user");
 
 const app = express();
 
@@ -12,7 +13,8 @@ app.use(express.json());
 app.use(cors());
 
 //routes
-app.use("/api/workouts", workoutRouter);
+app.use("/api/workouts", workoutRoutes);
+app.use("/api/user", userRoutes);
 
 app.get("/", (req, res) => {
   res
