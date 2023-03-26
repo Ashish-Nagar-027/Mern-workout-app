@@ -8,6 +8,7 @@ const WorkoutForm = () => {
   const [load, setLoad] = useState("");
   const [reps, setReps] = useState("");
   const [error, setError] = useState(null);
+  const [sendingData, setSendingData] = useState(false);
 
   const { dispatch } = useWorkoutsContext();
   const { user } = useContext(AuthContext);
@@ -24,6 +25,8 @@ const WorkoutForm = () => {
       return;
     }
 
+    setSendingData(true);
+
     const response = await fetch(
       "https://mern-workout-app.vercel.app/api/workouts",
       {
@@ -38,6 +41,7 @@ const WorkoutForm = () => {
     const json = await response.json();
 
     if (!response.ok) {
+      setSendingData(false);
       setError(json.error);
     }
     if (response.ok) {
@@ -46,6 +50,7 @@ const WorkoutForm = () => {
       setTitle("");
       setReps("");
       dispatch({ type: "CREATE_WORKOUT", payload: json.workout });
+      setSendingData(false);
     }
   };
 
@@ -70,7 +75,11 @@ const WorkoutForm = () => {
         value={reps}
         onChange={(e) => setReps(e.target.value)}
       />
-      <button>Add workout</button>
+      {sendingData ? (
+        <button className="lading-btn">Adding ...</button>
+      ) : (
+        <button>Add workout</button>
+      )}
       {error && <div className="error">{error}</div>}
     </form>
   );

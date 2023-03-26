@@ -62,18 +62,27 @@ header a {
 
 
 .home {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
+  display: flex;
   gap: 3rem;
+  justify-content: space-around;
+  flex-wrap: wrap-reverse;
+
+}
+
+.workouts{
+  flex: 1;
 }
 
 .workout-details {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 10px;
-  width: 100%;
   position: relative;
- 
+
+  min-width: 200px;
+  flex: 1;
 }
+
+
 
 .workout-details h4{
   color:rgb(0, 89, 255);
@@ -133,4 +142,18 @@ header a {
 
 .lading-btn {
   background-color: gray;
+ pointer-events: none;
+}
+
+@media  only screen and (max-width: 500px) {
+  .nav-right{
+    flex-direction: column;
+  
+  }
+
+
+  .container {
+    flex-direction: column;
+  }
+  
 }
